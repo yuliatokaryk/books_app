@@ -20,6 +20,8 @@ class Router
       HomeController.new(env).index
     elsif method == 'GET' && path == '/books'
       BooksController.new(env).index
+    elsif method == 'GET' && path == '/authors'
+      AuthorsController.new(env).index
     elsif method == 'POST' && path == '/books/create'
       BooksController.new(env).create(params: request_params)
     else
