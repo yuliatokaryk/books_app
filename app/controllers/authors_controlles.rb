@@ -8,7 +8,7 @@ class AuthorsController < BaseController
   def index
     [
       200,
-      { 'Content-Type' => 'text/plain' },
+      { 'Content-Type' => 'application/json' },
       [
         Database.new.connection.execute('SELECT * FROM authors').to_json
       ]

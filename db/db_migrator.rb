@@ -10,7 +10,7 @@ class DBMigrator
 
     create_versions
     create_books
-    create_books
+    create_authors
   end
 
   private
@@ -49,7 +49,7 @@ class DBMigrator
     SQL
   end
 
-  def create_books
+  def create_authors
     return if last_version_num >= 1_652_869_511_858
 
     db.execute <<-SQL
