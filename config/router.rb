@@ -21,7 +21,6 @@ class Router
     elsif method == 'GET' && path == '/books'
       BooksController.new(env).index
     elsif method == 'POST' && path == '/books/create'
-      # binding.irb
       BooksController.new(env).create(params: request_params)
     else
       [404, { 'Content-Type' => 'text/plain' }, ['404 Not Found']]
