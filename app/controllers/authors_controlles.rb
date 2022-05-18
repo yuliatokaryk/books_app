@@ -16,11 +16,12 @@ class AuthorsController < BaseController
   end
 
   def create(params:)
+    Database.new.connection.execute("INSERT INTO authors (name, country) VALUES('#{params['name']}', '#{params['country']}')")
     [
       201,
       { 'Content-Type' => 'application/json' },
       [
-        Database.new.connection.execute("INSERT INTO authors (name, country) VALUES('#{params['name']}', '#{params['country']}')")
+        'successfully created'
       ]
     ]
   end
