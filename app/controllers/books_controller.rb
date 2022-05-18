@@ -17,10 +17,10 @@ class BooksController < BaseController
 
   def create(params:)
     [
-      200,
-      { 'Content-Type' => 'text/plain' },
+      201,
+      { 'Content-Type' => 'application/json' },
       [
-        "Params name: #{params['name']}"
+        Database.new.connection.execute("INSERT INTO books (name, author) VALUES('#{params['name']}', '#{params['author']}')")
       ]
     ]
   end

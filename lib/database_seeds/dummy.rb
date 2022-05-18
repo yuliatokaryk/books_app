@@ -33,10 +33,10 @@ module DatabaseSeeds
 
       def authors
         [
-          { name: 'George Orwell', country: 'British India' },
-          { name: 'Jane Austin', country: 'England' },
-          { name: 'Bram Stoker', country: 'Ireland' },
-          { name: 'Mark Twain', country: 'U.S.A' }
+          { name: '1984', author: 'George Orwell' },
+          { name: 'Pride and Prejudice', author: 'Jane Austin' },
+          { name: 'Dracula', author: 'Bram Stoker' },
+          { name: 'Tom Sawyer', author: 'Mark Twain' }
         ]
       end
     end

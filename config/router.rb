@@ -24,6 +24,8 @@ class Router
       AuthorsController.new(env).index
     elsif method == 'POST' && path == '/books/create'
       BooksController.new(env).create(params: request_params)
+    elsif method == 'POST' && path == '/authors/create'
+      AuthorsController.new(env).create(params: request_params)
     else
       [404, { 'Content-Type' => 'text/plain' }, ['404 Not Found']]
     end
