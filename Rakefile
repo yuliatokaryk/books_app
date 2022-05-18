@@ -9,15 +9,11 @@ namespace :db do
   task :create do
     DBCreator.new.call
   end
-end
 
-namespace :db do
   task :migrate do
     DBMigrator.new.call
   end
-end
 
-namespace :db do
   task :seed do
     DatabaseSeeds::Main.execute
   end

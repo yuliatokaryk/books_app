@@ -20,7 +20,8 @@ module DatabaseSeeds
         [
           { name: '1984', author: 'George Orwell' },
           { name: 'Pride and Prejudice', author: 'Jane Austin' },
-          { name: 'Dracula', author: 'Bram Stoker' }
+          { name: 'Dracula', author: 'Bram Stoker' },
+          { name: 'Tom Sawyer', author: 'Mark Twain' }
         ]
       end
     end

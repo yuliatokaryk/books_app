@@ -6,6 +6,8 @@ Dir[File.join(ENV['APP_FULL_PATH'], 'app/controllers/', '*.rb')].each { |file| r
 
 # Router
 class Router
+  attr_reader :env, :path, :method
+
   def initialize(env)
     @env = env
     @path = env['PATH_INFO']
@@ -13,10 +15,10 @@ class Router
   end
 
   def call
-    if @method == 'GET' && @path == '/'
-      HomeController.new(@env).index
-    elsif @method == 'GET' && @path == '/books'
-      BooksController.new(@env).index
+    if method == 'GET' && path == '/'
+      HomeController.new(env).index
+    elsif method == 'GET' && path == '/books'
+      BooksController.new(env).index
     else
       [404, { 'Content-Type' => 'text/plain' }, ['404 Not Found']]
     end

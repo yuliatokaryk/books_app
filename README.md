@@ -19,3 +19,9 @@ rake db:seed
 ```bash
 shotgun -p 9292
 ```
+
+## Use for db versions
+
+```pry
+(Time.now.to_f * 1000).to_i
+```
