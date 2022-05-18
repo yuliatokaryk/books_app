@@ -14,4 +14,14 @@ class BooksController < BaseController
       ]
     ]
   end
+
+  def create(params:)
+    [
+      200,
+      { 'Content-Type' => 'text/plain' },
+      [
+        "Params name: #{params['name']}"
+      ]
+    ]
+  end
 end
