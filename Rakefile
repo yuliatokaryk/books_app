@@ -3,7 +3,7 @@
 require 'dotenv/load'
 require_relative 'db/db_creator'
 require_relative 'db/db_migrator'
-require_relative 'lib/database_seeds/main'
+require_relative 'db/db_seeder'
 
 namespace :db do
   task :create do
@@ -15,6 +15,6 @@ namespace :db do
   end
 
   task :seed do
-    DatabaseSeeds::Main.execute
+    DBSeeder.new.call
   end
 end

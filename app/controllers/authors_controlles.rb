@@ -3,20 +3,20 @@
 require_relative 'base_controller'
 
 # Books Controller
-class BooksController < BaseController
+class AuthorsController < BaseController
   def index
     [
       200,
       { 'Content-Type' => 'application/json' },
-      [db.execute('SELECT * FROM books').to_json]
+      [db.execute('SELECT * FROM authors').to_json]
     ]
   end
 
   def create(params:)
-    db.execute("INSERT INTO books (name, author) VALUES('#{params['name']}', '#{params['author']}')")
+    db.execute("INSERT INTO authors (name, country) VALUES('#{params['name']}', '#{params['country']}')")
     [
       201,
-      { 'Content-Type' => 'application/json' },
+      { 'Content-Type' => 'text/plain' },
       ['successfully created']
     ]
   end
