@@ -4,7 +4,7 @@ module DatabaseSeeds
   # Database Seeds Dummy
   class Dummy
     class << self
-      def execute
+      def execute # rubocop:disable Metrics/MethodLength
         db = Database.new.connection
 
         books.each do |book|

@@ -12,7 +12,7 @@ class CountriesController < BaseController
     ]
   end
 
-  def show(id)
+  def show(id) # rubocop:disable Metrics/MethodLength
     countries = db.execute("SELECT * FROM countries WHERE id = #{id}")
 
     if countries == []

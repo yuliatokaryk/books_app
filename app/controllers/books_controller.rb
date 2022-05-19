@@ -12,7 +12,7 @@ class BooksController < BaseController
     ]
   end
 
-  def show(id)
+  def show(id) # rubocop:disable Metrics/MethodLength
     books = db.execute("SELECT * FROM books WHERE id = #{id}")
 
     if books == []
