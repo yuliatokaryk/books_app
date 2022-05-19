@@ -23,6 +23,8 @@ class Router
     # Books
     elsif method == 'GET' && path == '/books'
       BooksController.new(env).index
+    elsif method == 'GET' && /^(\/books\/)\d+$/.match?(path)
+      BooksController.new(env).show(path.delete('/books/'))
     elsif method == 'POST' && path == '/books/create'
       BooksController.new(env).create(params: req.params)
 
