@@ -18,6 +18,12 @@ module DatabaseSeeds
             "INSERT INTO authors (name, country) VALUES('#{author[:name]}', '#{author[:country]}')"
           )
         end
+
+        countries.each do |country|
+          db.execute(
+            "INSERT INTO countries (name) VALUES('#{country[:name]}')"
+          )
+        end
       end
 
       def books
@@ -35,6 +41,15 @@ module DatabaseSeeds
           { name: 'Jane Austin', country: 'England' },
           { name: 'Bram Stoker', country: 'Ireland' },
           { name: 'Mark Twain', country: 'U.S.A' }
+        ]
+      end
+
+      def countries
+        [
+          { name: 'British India' },
+          { name: 'England' },
+          { name: 'Ireland' },
+          { name: 'U.S.A' }
         ]
       end
     end

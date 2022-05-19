@@ -10,6 +10,7 @@ class DBMigrator
     create_versions
     create_books
     create_authors
+    create_countries
   end
 
   private
@@ -63,5 +64,21 @@ class DBMigrator
       INSERT INTO versions (num)
       VALUES (1652869511858)
     SQL
+  end
+
+  def create_countries
+    return if last_version_num >= 1_652_969_655_923
+
+    db.execute <<-SQL
+    CREATE TABLE countries (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name VARCHAR(100)
+    );
+  SQL
+
+  db.execute <<-SQL
+    INSERT INTO versions (num)
+    VALUES (1652969655923)
+  SQL
   end
 end

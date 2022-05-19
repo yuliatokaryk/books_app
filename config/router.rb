@@ -34,7 +34,14 @@ class Router
     elsif method == 'GET' && /^(\/authors\/)\d+$/.match?(path)
       AuthorsController.new(env).show(path.delete('/authors/'))
     elsif method == 'POST' && path == '/authors/create'
-      AuthorsController.new(env).create(params: req.params)
+
+    # Countries
+    elsif method == 'GET' && path == '/countries'
+      CountriesController.new(env).index
+    elsif method == 'GET' && /^(\/countries\/)\d+$/.match?(path)
+      CountriesController.new(env).show(path.delete('/countries/'))
+    elsif method == 'POST' && path == '/countries/create'
+      CountriesController.new(env).create(params: req.params)
 
     # Not found
     else
