@@ -11,6 +11,7 @@ class DBMigrator
     create_books
     create_authors
     create_countries
+    modify_books
   end
 
   private
@@ -80,5 +81,21 @@ class DBMigrator
     INSERT INTO versions (num)
     VALUES (1652969655923)
   SQL
+  end
+
+  def modify_books
+    return if last_version_num >= 1_652_970_603_082
+  
+    db.execute <<-SQL
+      UPDATE Books
+      SET author = 'test test'
+      WHERE id = 1
+      
+    SQL
+
+    db.execute <<-SQL
+      INSERT INTO versions (num)
+      VALUES (1652970603082)
+    SQL
   end
 end
