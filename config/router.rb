@@ -31,6 +31,8 @@ class Router
     # Authors
     elsif method == 'GET' && path == '/authors'
       AuthorsController.new(env).index
+    elsif method == 'GET' && /^(\/authors\/)\d+$/.match?(path)
+      AuthorsController.new(env).show(path.delete('/authors/'))
     elsif method == 'POST' && path == '/authors/create'
       AuthorsController.new(env).create(params: req.params)
 
