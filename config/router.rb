@@ -16,24 +16,25 @@ class Router
   end
 
   def call
+    # Home
     if method == 'GET' && path == '/'
       HomeController.new(env).index
+
+    # Books
     elsif method == 'GET' && path == '/books'
       BooksController.new(env).index
+    elsif method == 'POST' && path == '/books/create'
+      BooksController.new(env).create(params: req.params)
+
+    # Authors
     elsif method == 'GET' && path == '/authors'
       AuthorsController.new(env).index
-    elsif method == 'POST' && path == '/books/create'
-      BooksController.new(env).create(params: request_params)
     elsif method == 'POST' && path == '/authors/create'
-      AuthorsController.new(env).create(params: request_params)
+      AuthorsController.new(env).create(params: req.params)
+
+    # Not found
     else
       [404, { 'Content-Type' => 'text/plain' }, ['404 Not Found']]
     end
-  end
-
-  private
-
-  def request_params
-    JSON.parse(req.body.read)
   end
 end

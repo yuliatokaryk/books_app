@@ -7,8 +7,6 @@ module DatabaseSeeds
       def execute
         db = Database.new.connection
 
-        return if db.execute('SELECT * FROM books').count.positive?
-
         books.each do |book|
           db.execute(
             "INSERT INTO books (name, author) VALUES('#{book[:name]}', '#{book[:author]}')"
