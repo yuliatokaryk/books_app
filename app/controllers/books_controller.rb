@@ -5,10 +5,12 @@ require_relative 'base_controller'
 # Books Controller
 class BooksController < BaseController
   def index
+    @books = db.execute("SELECT * FROM books")
+
     [
       200,
-      { 'Content-Type' => 'application/json' },
-      [db.execute('SELECT * FROM books').to_json]
+      { 'Content-Type' => 'text/html' },
+      [ERB.new(File.read('app/views/books/index.html.erb')).result(binding)]
     ]
   end
 
