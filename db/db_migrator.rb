@@ -8,9 +8,9 @@ class DBMigrator
     p 'DB does not exist, run `rake db:create`' and return unless File.exist?("#{ENV['APP_FULL_PATH']}/db/books.db")
 
     create_versions
-    create_books
-    create_authors
     create_countries
+    create_authors
+    create_books
   end
 
   private
@@ -32,53 +32,53 @@ class DBMigrator
     SQL
   end
 
-  def create_books
-    return if last_version_num >= 1_652_737_549_511
+  def create_countries
+    return if last_version_num >= 1_653_025_494_060
 
     db.execute <<-SQL
-      CREATE TABLE books (
+      CREATE TABLE countries (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name VARCHAR(100),
-        author VARCHAR(100)
+        name VARCHAR(100)
       );
     SQL
 
     db.execute <<-SQL
       INSERT INTO versions (num)
-      VALUES (1652737549511)
+      VALUES (1653025494060)
     SQL
   end
 
   def create_authors
-    return if last_version_num >= 1_652_869_511_858
+    return if last_version_num >= 1_653_025_531_850
 
     db.execute <<-SQL
       CREATE TABLE authors (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name VARCHAR(100),
-        country VARCHAR(100)
+        country_id INTEGER
       );
     SQL
 
     db.execute <<-SQL
       INSERT INTO versions (num)
-      VALUES (1652869511858)
+      VALUES (1653025531850)
     SQL
   end
 
-  def create_countries
-    return if last_version_num >= 1_652_969_655_923
+  def create_books
+    return if last_version_num >= 1_653_025_555_030
 
     db.execute <<-SQL
-    CREATE TABLE countries (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      name VARCHAR(100)
-    );
-  SQL
+      CREATE TABLE books (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name VARCHAR(100),
+        author_id INTEGER
+      );
+    SQL
 
-  db.execute <<-SQL
-    INSERT INTO versions (num)
-    VALUES (1652969655923)
-  SQL
+    db.execute <<-SQL
+      INSERT INTO versions (num)
+      VALUES (1653025555030)
+    SQL
   end
 end
