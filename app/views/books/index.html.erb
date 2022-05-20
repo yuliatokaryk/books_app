@@ -5,10 +5,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="/css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
-  <nav>
+  <nav class="mb-4">
     <ul class="nav nav-pills">
       <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="/books">Book</a>
@@ -31,13 +31,19 @@
     </ul>
   </nav>
 
-  <% @books.each do |book| %>
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">Name: <%= book["name"] %></h5>
-        <p class="card-text">Author: <%= db.execute("SELECT name FROM authors WHERE id = ?", book['author_id']).first&.fetch('name') %></p>
-      </div>
+  <div class="container">
+    <div class="row">
+        <% @books.each do |book| %>
+          <div class="col-sm-6 col-lg-4 mb-4">
+            <a class="card" href="/books/<%= book["id"] %>">
+              <div class="card-body">
+                <h5 class="card-title">Name: <%= book["name"] %></h5>
+                <p class="card-text">Author: <%= db.execute("SELECT name FROM authors WHERE id = ?", book['author_id']).first&.fetch('name') %></p>
+              </div>
+            </a>
+          </div>
+        <% end %>
     </div>
-  <% end %>
+  </div>
 </body>
 </html>
