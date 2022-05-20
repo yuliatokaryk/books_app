@@ -12,14 +12,14 @@
     <a href="/books">Book</a>
     <a href="/books/new">New book</a>
     <a href="/authors">Authors</a>
-    <a href="/authors/new">Authors</a>
+    <a href="/authors/new">New author</a>
   </nav>
 
   <ul>
-    <% @books.each do |book| %>
+    <% @authors.each do |author| %>
       <li>
-        <p>Name: <%= book["name"] %><p>
-        <p>Author: <%= db.execute("SELECT name FROM authors WHERE id = ?", book['author_id']).first&.fetch('name') %><p>
+        <p>Name: <%= author["name"] %><p>
+        <p>Country: <%= db.execute("SELECT name FROM countries WHERE id = ?", author['country_id']).first&.fetch('name') %><p>
       </li>
     <% end %>
   </ul>

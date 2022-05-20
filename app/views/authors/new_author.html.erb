@@ -15,13 +15,19 @@
     <a href="/authors/new">Authors</a>
   </nav>
 
-  <ul>
-    <% @books.each do |book| %>
-      <li>
-        <p>Name: <%= book["name"] %><p>
-        <p>Author: <%= db.execute("SELECT name FROM authors WHERE id = ?", book['author_id']).first&.fetch('name') %><p>
-      </li>
-    <% end %>
-  </ul>
+  <form method="post" action="/authors/create">
+    <p>
+      <input type="text" name="name">
+    </p>
+    <p>
+      <select name="country_id">
+        <% @countries.each do |country| %>
+          <option value="<%= country["id"] %>"><%= country["name"] %></option>
+        <% end %>
+      </select>
+    </p>
+    <button type="submit">Create book</button>
+  </form>
+
 </body>
 </html>
