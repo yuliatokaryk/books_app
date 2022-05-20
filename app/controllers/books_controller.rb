@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 require_relative 'base_controller'
+require_relative '../models/book.rb'
 
 # Books Controller
 class BooksController < BaseController
   def index
-    @books = db.execute("SELECT * FROM books")
+    @books = Book.new.all
 
     [
       200,
@@ -25,7 +26,7 @@ class BooksController < BaseController
   end
 
   def show(id) # rubocop:disable Metrics/MethodLength
-    books = db.execute("SELECT * FROM books WHERE id = #{id}")
+    books = Book.new.find_by_id(id)
 
     if books == []
       [
