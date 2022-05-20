@@ -5,25 +5,39 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link href="css/main.css" rel="stylesheet">
+  <link href="css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
   <nav>
-    <a href="/books">Book</a>
-    <a href="/books/new">New book</a>
-    <a href="/authors">Authors</a>
-    <a href="/authors/new">New author</a>
-    <a href="/countries">Countries</a>
-    <a href="/countries/new">New country</a>
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/books">Book</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/books/new">New book</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/authors">Authors</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/authors/new">New author</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/countries">Countries</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/countries/new">New country</a>
+      </li>
+    </ul>
   </nav>
 
-  <ul>
-    <% @books.each do |book| %>
-      <li>
-        <p>Name: <%= book["name"] %><p>
-        <p>Author: <%= db.execute("SELECT name FROM authors WHERE id = ?", book['author_id']).first&.fetch('name') %><p>
-      </li>
-    <% end %>
-  </ul>
+  <% @books.each do |book| %>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Name: <%= book["name"] %></h5>
+        <p class="card-text">Author: <%= db.execute("SELECT name FROM authors WHERE id = ?", book['author_id']).first&.fetch('name') %></p>
+      </div>
+    </div>
+  <% end %>
 </body>
 </html>
