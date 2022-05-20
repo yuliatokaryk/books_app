@@ -17,19 +17,12 @@
     <a href="/countries/new">New country</a>
   </nav>
 
-  <form method="post" action="/books/create">
-    <p>
-      <input type="text" name="name">
-    </p>
-    <p>
-      <select name="author_id">
-        <% @authors.each do |author| %>
-          <option value="<%= author["id"] %>"><%= author["name"] %></option>
-        <% end %>
-      </select>
-    </p>
-    <button type="submit">Create book</button>
-  </form>
-
+  <ul>
+    <% @countries.each do |country| %>
+      <li>
+        <p>Name: <%= country["name"] %><p>
+      </li>
+    <% end %>
+  </ul>
 </body>
 </html>

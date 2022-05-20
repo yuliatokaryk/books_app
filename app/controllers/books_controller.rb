@@ -49,7 +49,7 @@ class BooksController < BaseController
       301,
       {
         'http-equiv' => 'refresh',
-        'location' => '/authors'
+        'location' => '/books'
       },
       []
     ]

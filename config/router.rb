@@ -45,6 +45,8 @@ class Router
       CountriesController.new(env).index
     elsif method == 'GET' && /^(\/countries\/)\d+$/.match?(path)
       CountriesController.new(env).show(path.delete('/countries/'))
+    elsif method == 'GET' && path == '/countries/new'
+      CountriesController.new(env).new_country
     elsif method == 'POST' && path == '/countries/create'
       CountriesController.new(env).create(params: req.params)
 
