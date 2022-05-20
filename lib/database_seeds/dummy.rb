@@ -6,22 +6,22 @@ module DatabaseSeeds
     class << self
       def execute
         db = Database.new.connection
-
-        books.each do |book|
-          db.execute(
-            "INSERT INTO books (name, author) VALUES('#{book[:name]}', '#{book[:author]}')"
-          )
-        end
-
-        authors.each do |author|
-          db.execute(
-            "INSERT INTO authors (name, country) VALUES('#{author[:name]}', '#{author[:country]}')"
-          )
-        end
-
+      
         countries.each do |country|
           db.execute(
             "INSERT INTO countries (name) VALUES('#{country[:name]}')"
+          )
+        end
+
+        authors.each_with_index do |author, index|
+          db.execute(
+            "INSERT INTO authors (name, country_id) VALUES('#{author[:name]}', #{index + 1})"
+          )
+        end
+
+        books.each_with_index do |book, index|
+          db.execute(
+            "INSERT INTO books (name, author_id) VALUES('#{book[:name]}', '#{index + 1}')"
           )
         end
       end
