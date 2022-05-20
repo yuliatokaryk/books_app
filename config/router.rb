@@ -23,7 +23,7 @@ class Router
     # Books
     elsif method == 'GET' && path == '/books'
       BooksController.new(env).index
-    elsif method == 'GET' && /^(\/books\/)\d+$/.match? (path)
+    elsif method == 'GET' && /^(\/books\/)\d+$/.match?(path)
       BooksController.new(env).show(path.delete('/books/'))
     elsif method == 'POST' && path == '/books/create'
       BooksController.new(env).create(params: req.params)
@@ -31,14 +31,14 @@ class Router
     # Authors
     elsif method == 'GET' && path == '/authors'
       AuthorsController.new(env).index
-    elsif method == 'GET' && /^(\/authors\/)\d+$/.match? (path)
+    elsif method == 'GET' && /^(\/authors\/)\d+$/.match?(path)
       AuthorsController.new(env).show(path.delete('/authors/'))
     elsif method == 'POST' && path == '/authors/create'
 
     # Countries
     elsif method == 'GET' && path == '/countries'
       CountriesController.new(env).index
-    elsif method == 'GET' && /^(\/countries\/)\d+$/.match? (path)
+    elsif method == 'GET' && /^(\/countries\/)\d+$/.match?(path)
       CountriesController.new(env).show(path.delete('/countries/'))
     elsif method == 'POST' && path == '/countries/create'
       CountriesController.new(env).create(params: req.params)
