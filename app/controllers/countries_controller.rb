@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 require_relative 'base_controller'
+require_relative '../models/countries.rb'
 
 # Books Controller
 class CountriesController < BaseController
   def index
-    @countries = db.execute("SELECT * FROM countries")
+    @countries = Country.new.all
 
     [
       200,
@@ -23,7 +24,7 @@ class CountriesController < BaseController
   end
 
   def show(id) # rubocop:disable Metrics/MethodLength
-    countries = db.execute("SELECT * FROM countries WHERE id = #{id}")
+    countries = Country.new.find_by_id(id)
 
     if countries == []
       [
