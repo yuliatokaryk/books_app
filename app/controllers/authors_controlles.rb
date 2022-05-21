@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 require_relative 'base_controller'
+require_relative '../models/authors.rb'
 
 # Books Controller
 class AuthorsController < BaseController
   def index
-    @authors = db.execute("SELECT * FROM authors")
+    @authors = Author.new.all
 
     [
       200,
@@ -25,19 +26,19 @@ class AuthorsController < BaseController
   end
 
   def show(id) # rubocop:disable Metrics/MethodLength
-    authors = db.execute("SELECT * FROM authors WHERE id = #{id}")
+    author = Author.new.find_by_id(id)
 
-    if authors == []
+    if author == []
       [
         404,
         { 'Content-Type' => 'text/plain' },
-        ["authors #{id} not found"]
+        ["author #{id} not found"]
       ]
     else
       [
         200,
         { 'Content-Type' => 'application/json' },
-        [authors.to_json]
+        [author.to_json]
       ]
     end
   end
